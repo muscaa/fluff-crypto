@@ -8,6 +8,9 @@ import fluff.crypto.CryptoOutput;
 import fluff.crypto.codec.CodingException;
 import fluff.crypto.codec.ICodingAlgorithm;
 
+/**
+ * Implements URL encoding and decoding algorithms.
+ */
 public class URLCodingAlgorithm implements ICodingAlgorithm {
 	
 	@Override

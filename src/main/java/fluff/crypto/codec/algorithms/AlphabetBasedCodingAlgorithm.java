@@ -6,6 +6,10 @@ import fluff.crypto.CryptoOutput;
 import fluff.crypto.codec.CodingException;
 import fluff.crypto.codec.ICodingAlgorithm;
 
+/**
+ * Implements an alphabet-based encoding and decoding algorithm.
+ * This algorithm is configurable with custom alphabets and padding.
+ */
 public class AlphabetBasedCodingAlgorithm implements ICodingAlgorithm {
 	
 	private static final byte INVALID = -1;
@@ -17,6 +21,16 @@ public class AlphabetBasedCodingAlgorithm implements ICodingAlgorithm {
 	private final byte[] dec;
 	private final byte pad;
 	
+	/**
+	 * Constructs a new AlphabetBasedCodingAlgorithm with padding.
+	 *
+	 * @param encSize the size of the encoded block
+	 * @param encBits the number of bits per encoded block
+	 * @param decSize the size of the decoded block
+	 * @param decBits the number of bits per decoded block
+	 * @param alphabet the encoding alphabet
+	 * @param pad the padding character
+	 */
 	public AlphabetBasedCodingAlgorithm(int encSize, int encBits, int decSize, int decBits, String alphabet, char pad) {
 		this.encSize = encSize;
 		this.encBits = encBits;
@@ -33,6 +47,15 @@ public class AlphabetBasedCodingAlgorithm implements ICodingAlgorithm {
 		}
 	}
 	
+	/**
+	 * Constructs a new AlphabetBasedCodingAlgorithm without padding.
+	 *
+	 * @param encSize the size of the encoded block
+	 * @param encBits the number of bits per encoded block
+	 * @param decSize the size of the decoded block
+	 * @param decBits the number of bits per decoded block
+	 * @param alphabet the encoding alphabet
+	 */
 	public AlphabetBasedCodingAlgorithm(int encSize, int encBits, int decSize, int decBits, String alphabet) {
 		this(encSize, encBits, decSize, decBits, alphabet, (char) 0);
 	}
@@ -64,7 +87,7 @@ public class AlphabetBasedCodingAlgorithm implements ICodingAlgorithm {
 	    }
 	    
 	    if (pad != 0) {
-		    while (len % encSize != 0) {
+		    while (len < maxLen) {
 		        buf[len++] = pad;
 		    }
 	    }

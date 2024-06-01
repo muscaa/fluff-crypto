@@ -7,6 +7,9 @@ import fluff.crypto.hash.HashingException;
 import fluff.crypto.hash.IHashingAlgorithm;
 import fluff.crypto.utils.CryptoUtils;
 
+/**
+ * An implementation of the {@link IHashingAlgorithm} interface for the SHA 384 hashing algorithm.
+ */
 public class SHA_384HashingAlgorithm implements IHashingAlgorithm {
 	
 	private static final MessageDigest md = CryptoUtils.getMessageDigest("SHA-384");

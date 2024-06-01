@@ -15,6 +15,9 @@ import fluff.crypto.hash.algorithms.SHA_256HashingAlgorithm;
 import fluff.crypto.hash.algorithms.SHA_384HashingAlgorithm;
 import fluff.crypto.hash.algorithms.SHA_512HashingAlgorithm;
 
+/**
+ * A class for managing and providing various hashing algorithms.
+ */
 public class Hashing {
 	
     private static final Map<String, HashingFunctions> REG = new HashMap<>();
@@ -36,20 +39,45 @@ public class Hashing {
     public static final HashingFunctions SHA_512 = register("sha-512", new SHA_512HashingAlgorithm());
     public static final HashingFunctions SHA3_512 = register("sha3-512", new SHA3_512HashingAlgorithm());
     
+    /**
+     * Retrieves the hashing functions associated with the specified name.
+     *
+     * @param name the name of the hashing algorithm
+     * @return the hashing functions associated with the specified name, or null if not found
+     */
     public static HashingFunctions get(String name) {
         return REG.get(name);
     }
     
+    /**
+     * Checks if the specified hashing algorithm is registered.
+     *
+     * @param name the name of the hashing algorithm
+     * @return true if the hashing algorithm is registered, false otherwise
+     */
     public static boolean has(String name) {
         return REG.containsKey(name);
     }
     
+    /**
+     * Registers a new hashing algorithm with the specified name.
+     *
+     * @param name the name of the hashing algorithm
+     * @param algorithm the hashing algorithm to register
+     * @return the hashing functions associated with the registered algorithm
+     */
     public static HashingFunctions register(String name, IHashingAlgorithm algorithm) {
     	HashingFunctions funcs = new HashingFunctions(algorithm);
         REG.put(name, funcs);
         return funcs;
     }
     
+    /**
+     * Unregisters the hashing algorithm associated with the specified name.
+     *
+     * @param name the name of the hashing algorithm
+     * @return true if the hashing algorithm was successfully unregistered, false otherwise
+     */
     public static boolean unregister(String name) {
         return REG.remove(name) != null;
     }
